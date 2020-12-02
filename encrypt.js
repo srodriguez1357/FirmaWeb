@@ -25,12 +25,12 @@ console.log("salt:", salt);
 let N = 16384; 
 let r = 8; 
 let p = 1; 
-let key = scrypt(password, salt, N, r, p, nacl.secretbox.keyLength);
-console.log(key);
+let priv_key = scrypt(password, salt, N, r, p, nacl.secretbox.keyLength);
+console.log(priv_key);
 
 let nonce = nacl.randomBytes(nacl.secretbox.nonceLength);
 console.log("nonce:", nonce);
-let encrypted = nacl.secretbox(secret_msg, nonce, key);
+let encrypted = nacl.secretbox(secret_msg, nonce, priv_key);
 
 encrypted = util.encodeBase64(encrypted);
 
